@@ -2,7 +2,7 @@ package io.timewase.spring.TimeWase.model;
 
 public class User {
 
-    public User(int userId, String username, String email, String passwordHash, int createdAt) {
+    public User(long userId, String username, String email, String passwordHash, int createdAt) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -10,7 +10,7 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
@@ -50,8 +50,7 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    private int userId;
-
+    private long userId;
     private String username;
     private String email;
     private String passwordHash;
