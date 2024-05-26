@@ -1,16 +1,23 @@
 package io.timewase.spring.TimeWase.model;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name="GoalReport")
 public class GoalReport {
 
-    public GoalReport(Long reportId, Goal goal, User user, String content, LocalDateTime createdAt) {
-        this.reportId = reportId;
-        this.goal = goal;
-        this.user = user;
-        this.content = content;
-        this.createdAt = createdAt;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long reportId;
+    @ManyToOne
+    @JoinColumn(name = "goal_id", nullable = false)
+    private Goal goal;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+    private String content;
+    private LocalDateTime createdAt;
 
     public Long getReportId() {
         return reportId;
@@ -51,12 +58,6 @@ public class GoalReport {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-
-    private Long reportId;
-    private Goal goal;
-    private User user;
-    private String content;
-    private LocalDateTime createdAt;
-
-    // Getters and Setters
 }
+
+

@@ -1,27 +1,32 @@
 package io.timewase.spring.TimeWase.service;
 
 import io.timewase.spring.TimeWase.model.User;
+import io.timewase.spring.TimeWase.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class TimeWaseService {
 
-    static private ArrayList<User> users = new ArrayList<>(Arrays.asList(
-            new User(1, "Jean", "jean.test@gmail.com", "12345", 22052024),
-            new User(2, "Didier", "didier.test@gmail.com", "12345", 22052024),
-            new User(3, "Pascal", "pascal.test@gmail.com", "12345", 22052024),
-            new User(4, "Sabine", "sabine.test@gmail.com", "12345", 22052024),
-            new User(5, "Pierre", "pierre.test@gmail.com", "12345", 22052024)
-    ));
+    @Autowired
+    private UserRepository repo;
 
-    public List<User> getUsers(){
-        return users;
+    public List<User> getAllUsers() {
+        return repo.findAll();
     }
 
-    public User getUser(long userId) {
-        return users.stream().filter(user -> user.getUserId() == userId).findFirst().orElse(null);
+    public Optional<User> getUserById(Long userId) {
+        return repo.findById(userId);
+    }
+
+    public User saveUser(User user) {
+        return repo.save(user);
+    }
+
+    public void deleteUser(Long userId) {
+        repo.deleteById(userId);
     }
 }
