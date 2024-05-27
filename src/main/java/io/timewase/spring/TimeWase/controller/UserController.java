@@ -1,7 +1,7 @@
 package io.timewase.spring.TimeWase.controller;
 
 import io.timewase.spring.TimeWase.model.User;
-import io.timewase.spring.TimeWase.service.TimeWaseService;
+import io.timewase.spring.TimeWase.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private TimeWaseService service;
+    private UserService service;
 
     @GetMapping
     public List<User> getAllUsers() {
