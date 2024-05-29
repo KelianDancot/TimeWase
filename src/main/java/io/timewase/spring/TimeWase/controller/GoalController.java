@@ -16,6 +16,7 @@ public class GoalController {
     @Autowired
     private GoalService goalService;
 
+    @CrossOrigin("*")
     @GetMapping
     public List<Goal> getAllGoals() {
         return goalService.getAllGoals();
